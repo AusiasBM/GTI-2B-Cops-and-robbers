@@ -51,11 +51,42 @@ public class Controller : MonoBehaviour
         //Matriz de adyacencia
         int[,] matriu = new int[Constants.NumTiles, Constants.NumTiles];
 
-        //TODO: Inicializar matriz a 0's
+        // Inixializar la matriz a 0
+        for (int i = 0; i < matriu.Length; i++)
+        {
+            for (int j = 0; j < matriu.Length; i++)
+            {
+                matriu[i,j] = 0;
+            }
+        }
 
         //TODO: Para cada posición, rellenar con 1's las casillas adyacentes (arriba, abajo, izquierda y derecha)
 
+
+
         //TODO: Rellenar la lista "adjacency" de cada casilla con los índices de sus casillas adyacentes
+        for (int i = 0; i < tiles.Length; i++) // Recorremos la lista de tiles
+        {
+            if (i - 8 >= 0) // Si restamos 8 y es mayor a 0 quiere decir que tiene una casilla arriba de el
+            {
+                tiles[i].adjacency.Add(i-8);
+            }
+
+            if (i + 8 < tiles.Length) // Si sumamos 8 y es menor a tiles.length, quiere decir que tiene una casilla por debajo de el
+            {
+                tiles[i].adjacency.Add(i + 8);
+            }
+
+            if (i - 1 >= 0) // Si restamos uno y es mayor o igual a 0, quiere decir que tiene una casilla a su izquierda
+            {
+                tiles[i].adjacency.Add(i - 1);
+            }
+
+            if (i + 1 < tiles.Length) // Si sumamos 1 y es menor a length, quiere decir que tiene una casilla a su derecha
+            {
+                tiles[i].adjacency.Add(i + 1);
+            }
+        }
 
     }
 
