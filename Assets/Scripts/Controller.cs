@@ -61,17 +61,27 @@ public class Controller : MonoBehaviour
                 tiles[i].adjacency.Add(i + 8);
             }
 
-            if (i + 1 < tiles.Length)
+            if ((i + 1) % 8 == 0 && i >= 0 && i < tiles.Length) // Si sumamos 1 a la i, i el residuo de dividirlo entre 8 es 0, sabemos que la i en que estema es el final de una fila
+            {
+                tiles[i].adjacency.Add(i - 1);
+
+            }else if (i % 8 == 0 && i >= 0 && i < tiles.Length) // Si el residuo de i entre 8 es 0, sabemos que la casilla en la que estamos es la de la izquierda del todo.
             {
                 tiles[i].adjacency.Add(i + 1);
             }
-
-            if (i - 1 >= 0) 
+            else // En este else entramos si estamos por el medio de las filas
             {
-                tiles[i].adjacency.Add(i - 1);
-            }
+                if (i + 1 < tiles.Length) 
+                {
+                    tiles[i].adjacency.Add(i + 1);
+                }
 
-            
+                if (i - 1 >= 0)
+                {
+                    tiles[i].adjacency.Add(i - 1);
+                }
+            } 
+
         }
 
     }
